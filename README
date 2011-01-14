@@ -1,90 +1,24 @@
-0===============================================0
-|                                               |
-|    pdev - potrable development environment    |
-|                                               |
-0===============================================0
-o--------------------------------------o
-|  When installing from USB to host:   |
-o--------------------------------------o
+pdev - portable development
 
-The INSTALL.BAT file will create the TARGET_DIR on the host.
-Then, for each 7z archive in the bat's root folder, it
-will extract it to the destination. ?: a ignore file
+1. Why ?
+If you study computer science at school/uni, you probably want to customise the
+development environment. It is also very likely the machines at your uni have
+their BIOSs locked and don't allow booting from CD/USB. pdev is designed to make
+it as easy as possible to automate the injection of a MinGW ecosystem on a host
+for C/C++/Java programming.
 
-It will also create the PUSH.BAT in the target dir, and
-in it set a variable which points back to the folder from
-which the setup was launced. This will enable PUSH.BAT to
-update the archives with the new versions of any modified files,
-and to add newly created files. Files that were deleted from
-disk will also be removed from the archives. ?: if a switch is spec.
+2. How ?
+The core of pdev is setup.bat. When you run this file, it will iterate over 7z archives
+in the current folder, and unzip each in a folder specified by you ( by default - C:\pdev ).
 
-o---------------------------------o
-|  When updating archives on USB  |
-o---------------------------------o
+hooks
+Unzipping MinGW is not sufficient to make it work - you need to setup environment variables.
+For this, you can use hooks. There are two kinds of hooks: pre and post. Hooks are .bat files
+placed in the 'hooks' foler. For each package, setup.bat looks in this folder for hooks to
+execute. If you place a file named 'pre-MinGW.bat' in the 'hooks' directory, setup.bat will
+execute it before the unzipping process. If you have a file named 'post-MinGW.bat', it will
+be executed after the unzipping process.
 
-When pdev was installed on the host, the PUSH.BAT file created
-a list of folders created during the installation ( FOLDERS ).
-This was done so that the user will have the ability to create new
-folders inside the TARGET_DIR which will be ignored by PUSH.BAT when
-updating the archives in the ORIGIN_DIR. 
-
-For each newly created folder, ( one which is not found in the FOLDERS
-file ), the user will be asked whether he desires to include it in the
-archives. If yes, a new archive will be created in ORIGIN_DIR, named as
-the folder with the 7z extension.
-
-o---------------------------------o
-|  Running apps from the USB      |
-o---------------------------------o
-
-Applications run directly from the USB might run a lot slower,
-so the recommended way is to copy them to the host and then run.
-
-
-o---------------------------------o
-|  Hooks                          |
-o---------------------------------o
-
-Hooks - .bat files which can be executed before or/and after the installation
-( unzipping ) of a package ( a 7z archive ). For example, for MinGW, a hook
-would set up the environment variables neccesary for compiling.
-
-o---------------------------------o
-|  'Get' mode                     |
-o---------------------------------o
-
-Using wget, the installer is downloaded; then a corresponding ahk ( autohotkey )
-script is run which will automatically install the package.
-
-
-Components:
-    Programming:
-        MinGW + msys
-        GVim
-        Emacs
-    Apps:
-        Firefox
-        AutoHotkey
-        VirtuaWin
-    Runtimes:
-        Python
-        Perl
-        Ruby
-    Tools:  // source code formatter, line counting, doc generator, etc
-        astyle
-        ctags
-        radare
-        reskit
-    Other:
-        Java documentation
-        Boost library and documenation
-
-Setup
-=====
-A .bat file - will:
-- setup environment variables
-- delete existing shortcuts
-- create shortcuts
-- enable font smoothing
-- change wallpaper
-- auto-hide taskbar
+You can add hooks for any package. To disable a hook, you can delete/move it to another folder,
+or you can rename it. If a file in the 'hooks' folder does not have a name of the form
+pre-package.bat or post-package.bat, it is ignored.
