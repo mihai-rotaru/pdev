@@ -1,0 +1,90 @@
+0===============================================0
+|                                               |
+|    pdev - potrable development environment    |
+|                                               |
+0===============================================0
+o--------------------------------------o
+|  When installing from USB to host:   |
+o--------------------------------------o
+
+The INSTALL.BAT file will create the TARGET_DIR on the host.
+Then, for each 7z archive in the bat's root folder, it
+will extract it to the destination. ?: a ignore file
+
+It will also create the PUSH.BAT in the target dir, and
+in it set a variable which points back to the folder from
+which the setup was launced. This will enable PUSH.BAT to
+update the archives with the new versions of any modified files,
+and to add newly created files. Files that were deleted from
+disk will also be removed from the archives. ?: if a switch is spec.
+
+o---------------------------------o
+|  When updating archives on USB  |
+o---------------------------------o
+
+When pdev was installed on the host, the PUSH.BAT file created
+a list of folders created during the installation ( FOLDERS ).
+This was done so that the user will have the ability to create new
+folders inside the TARGET_DIR which will be ignored by PUSH.BAT when
+updating the archives in the ORIGIN_DIR. 
+
+For each newly created folder, ( one which is not found in the FOLDERS
+file ), the user will be asked whether he desires to include it in the
+archives. If yes, a new archive will be created in ORIGIN_DIR, named as
+the folder with the 7z extension.
+
+o---------------------------------o
+|  Running apps from the USB      |
+o---------------------------------o
+
+Applications run directly from the USB might run a lot slower,
+so the recommended way is to copy them to the host and then run.
+
+
+o---------------------------------o
+|  Hooks                          |
+o---------------------------------o
+
+Hooks - .bat files which can be executed before or/and after the installation
+( unzipping ) of a package ( a 7z archive ). For example, for MinGW, a hook
+would set up the environment variables neccesary for compiling.
+
+o---------------------------------o
+|  'Get' mode                     |
+o---------------------------------o
+
+Using wget, the installer is downloaded; then a corresponding ahk ( autohotkey )
+script is run which will automatically install the package.
+
+
+Components:
+    Programming:
+        MinGW + msys
+        GVim
+        Emacs
+    Apps:
+        Firefox
+        AutoHotkey
+        VirtuaWin
+    Runtimes:
+        Python
+        Perl
+        Ruby
+    Tools:  // source code formatter, line counting, doc generator, etc
+        astyle
+        ctags
+        radare
+        reskit
+    Other:
+        Java documentation
+        Boost library and documenation
+
+Setup
+=====
+A .bat file - will:
+- setup environment variables
+- delete existing shortcuts
+- create shortcuts
+- enable font smoothing
+- change wallpaper
+- auto-hide taskbar
