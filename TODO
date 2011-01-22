@@ -1,17 +1,11 @@
-IGNORE:
-- if an ignore file is not specified by using the -i flag, then archives
-listed in the IGNORE file will be ignored ( not extracted )
-- if an ignore file is specified, the IGNORE file will be ignored
-( that is, the setup script will only look in the file supplied as a
-command line argument for archives to ignore )
-Ex:
-    setup.bat -i no_dev.txt ~> will ignore files listed in no_dev.txt,
-                               and the all other archives will be unpacked
-                               ( even if listed in the IGNORE file )
-
-PRIORITY
-- if a file named PRIORITY exists in pdev root, files from it will be unpacked
-first ( in the order specified in the file )
-
-
-
+- the IGNORE file - packages to ignore
+- the PRIORITY file - which packages to install first
+- send install pahts py env. var
+- simplify the installation of shortcuts
+- cool cmd shortcuts
+- wallpaper
+- consolas font
+- enable font smoothing
+- remove the recycle bin from the desktop
+- auto-hide taskbar
+- remove.bat

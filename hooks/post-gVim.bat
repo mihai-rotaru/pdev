@@ -1,9 +1,7 @@
 @ECHO OFF
 
-::echo '"%TARGET_DIR%"'
-::echo "%TARGET_DIR%%PACKAGE_TARGET_DIR%\%PACK_NAME%\gVimPortable.exe"
-:: create a shortcut
 IF EXIST "%TARGET_DIR%%PACKAGE_TARGET_DIR%\%PACK_NAME%\gVimPortable.exe" (
-echo gVim found, creating shortcut...
-%BSD%\shortcut -t "%TARGET_DIR%%PACKAGE_TARGET_DIR%\%PACK_NAME%\gVimPortable.exe" -n ""%USERPROFILE%"\Desktop\gVim.lnk"
+ECHO gVim found, creating shortcut...
+%BSD%\shortcut /A:C /T:"%TARGET_DIR%%PACKAGE_TARGET_DIR%\%PACK_NAME%\gVimPortable.exe" /F:^"^%USERPROFILE%\Desktop\gVim.lnk^" /R:3
 )
+ECHO shortcut.exe returned %ERRORLEVEL%

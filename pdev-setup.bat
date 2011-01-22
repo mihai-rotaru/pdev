@@ -62,7 +62,8 @@ echo package target folder: %TARGET_DIR%%PACKAGE_TARGET_DIR%
 
 echo BSD: %BSD%
 :: unzip the package ( archive )
-%BSD%\7za x %~1 -o%TARGET_DIR%%PACKAGE_TARGET_DIR% 1>NULL
+ECHO unzipping %PACK_NAME%...
+%BSD%\7za x %~1 -o%TARGET_DIR%%PACKAGE_TARGET_DIR% -aoa 1>NULL
 
 :: check 7z return codes
 IF %ERRORLEVEL%==0 ECHO 7-Zip returned 0 - successfull execution.
@@ -91,3 +92,5 @@ echo -----------------------------------------------------------
 :: cleanup
 ::set TARGET_DIR=
 ::set BSD=
+
+CALL post-setup.bat
