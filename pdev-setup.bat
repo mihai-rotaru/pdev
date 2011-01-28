@@ -15,6 +15,8 @@ ECHO +-------------------------------------------------------------+
 SET USB_DRIVE=%~d0
 ECHO batch file full path: %CD%
 
+SET PDEV_ROOT=%~dp0
+
 :: the folder which contains the needed tools for the setup
 set BSD=%CD%\bootstrap
 
@@ -80,6 +82,7 @@ set PACKAGE_TARGET_DIR=
 echo -----------------------------------------------------------
 
 :done_installing_packages
+ECHO finished installing packages
 
 :: cleanup
 ::set TARGET_DIR=
