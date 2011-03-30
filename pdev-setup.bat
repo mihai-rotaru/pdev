@@ -44,9 +44,9 @@ echo installing %PACK_NAME% ...
 
 :: check for and execute pre hook
 IF EXIST %~p0hooks\pre-%PACK_NAME%.bat (
-ECHO executing the 'pre' hook for %PACK_NAME%
+ECHO ---^> 'pre' hook for %PACK_NAME%
 CALL %~p0hooks\pre-%PACK_NAME%.bat
-ECHO executed 'pre' hook for %PACK_NAME%)
+ECHO ^<--- 'pre' hook for %PACK_NAME%)
 
 :: check if a target folder was specified
 IF EXIST %~p0hooks\%PACK_NAME%_target.txt (
@@ -54,7 +54,6 @@ set /p PACKAGE_TARGET_DIR=<%~p0hooks\%PACK_NAME%_target.txt
 )
 
 echo package target folder: %TARGET_DIR%%PACKAGE_TARGET_DIR%
-echo BSD: %BSD%
 
 :: unzip the package ( archive )
 ECHO unzipping %PACK_NAME%...
@@ -73,9 +72,9 @@ IF EXIST %~p0hooks\"%PACK_NAME%"_target.txt DEL %~p0hooks\"%PACK_NAME%"_target.t
 
 :: check for and execute post hook
 IF EXIST %~p0hooks\post-%PACK_NAME%.bat (
-ECHO executing the 'post' hook for %PACK_NAME%
+ECHO ---^> 'post' hook for %PACK_NAME%
 CALL %~p0hooks\post-%PACK_NAME%.bat
-ECHO executed the 'post' hook for %PACK_NAME%)
+ECHO ^<--- 'post' hook for %PACK_NAME%)
 
 set PACKAGE_TARGET_DIR=
 
