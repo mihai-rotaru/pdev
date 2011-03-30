@@ -3,3 +3,4 @@
 IF EXIST "%PDEV_ROOT%\files\.bashrc" (
 ECHO found .bashrc on your deveice...
 XCOPY "%PDEV_ROOT%\files\.bashrc" "%USERPROFILE%\.bashrc" /I /-Y
+)
