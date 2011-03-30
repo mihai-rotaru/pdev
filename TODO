@@ -1,11 +1,12 @@
 - the IGNORE file - packages to ignore
 - the PRIORITY file - which packages to install first
-- send install pahts py env. var
-- simplify the installation of shortcuts
-- cool cmd shortcuts
+- send install paths by env. var
+- create shortcuts
+- cool cmd/bash shortcuts
 - wallpaper
 - consolas font
 - enable font smoothing
 - remove the recycle bin from the desktop
 - auto-hide taskbar
 - remove.bat
+- if 7z not installed, associate 7z files with the executable on the USB
